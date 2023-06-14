@@ -22,3 +22,4 @@ Route::get('/', function () {
 // feeds, profile, friends
 
 Route::get('/feeds', [FeedController::class,'feeds'])->name('frontend.feeds');
+Route::post('/feeds',[FeedController::class,'store'])->name('frontend.feeds.store');
