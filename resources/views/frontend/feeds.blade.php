@@ -71,15 +71,24 @@
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" class="form-control" name="title" id="title"
                                     placeholder="Title of your post">
+                                @error('title')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
                                 <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                                @error('description')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="photo" class="form-label">Photo</label>
                                 <input type="text" class="form-control" name="photo" id="photo"
                                     placeholder="photo of your post">
+                                @error('photo')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-success">Post</button>
@@ -92,8 +101,13 @@
                                 <div class="d-flex justify-content-between">
                                     <div>{{ $feed->title }}</div>
                                     <div>
-                                        <button class="btn">...</button>
-                                        <button class="btn">X</button>
+
+                                        <a href="{{ route('frontend.feeds.edit', $feed) }}" class="btn">edit</a>
+                                        <form action="{{ route('frontend.feeds.destroy', $feed) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn">X</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
