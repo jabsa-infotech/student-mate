@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class FeedController extends Controller
 {
-    public function feeds()
+    public function index()
     {
         $feeds = Feed::latest()->where('status', 'PUBLISHED')->get(); //select * from feeds
         return view('frontend.feeds', compact('feeds'));
