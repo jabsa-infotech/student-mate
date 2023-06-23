@@ -33,6 +33,13 @@ class FeedController extends Controller
         $feed->status = 'PUBLISHED';
         $feed->save();
 
+        Feed::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'photo' => $request->photo,
+            'status'=>'PUBLISHED'
+        ]);
+
         return redirect()->back();
     }
 

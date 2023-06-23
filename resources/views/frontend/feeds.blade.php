@@ -31,9 +31,23 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">My Account</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Change password</a>
-                    <a class="dropdown-item" href="#">Logout</a>
+
+                    @auth
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Change password</a>
+
+                        <form action="{{ route('auth.logout') }}" method="post">
+                            @csrf
+
+                            <button type="submit" class="dropdown-item">Log out</button>
+                        </form>
+                    @else
+
+                    <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                    <a class="dropdown-item" href="#">Signup</a>
+
+                    @endauth
+
                 </div>
 
             </div>
@@ -79,8 +93,8 @@
                                 <label for="description" class="form-label">Description</label>
                                 <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                                 @error('description')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="photo" class="form-label">Photo</label>
