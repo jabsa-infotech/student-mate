@@ -2,12 +2,8 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 
 // feeds, profile, friends
 
@@ -32,3 +28,8 @@ Route::group([
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+Route::get('/', [FrontendController::class,'index'])->name('frontend.index');
+Route::get('/about', [FrontendController::class,'about'])->name('frontend.about');
