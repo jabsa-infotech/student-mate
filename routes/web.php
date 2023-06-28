@@ -33,3 +33,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/', [FrontendController::class,'index'])->name('frontend.index');
 Route::get('/about', [FrontendController::class,'about'])->name('frontend.about');
+
+
+Route::get('admin/dashboard', [FrontendController::class,'adminDashboard'])->name('admin.dashboard.index');

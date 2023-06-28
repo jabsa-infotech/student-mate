@@ -13,4 +13,8 @@ class FrontendController extends Controller
     function about() {
         return view('frontend.about');
     }
+
+    function adminDashboard() {
+        return view('admin.dashboard.index');
+    }
 }

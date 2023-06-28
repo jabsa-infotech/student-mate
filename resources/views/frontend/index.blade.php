@@ -1,13 +1,1 @@
-@extends('layouts.bootstrap5')
-
-
-@section('content')
-    <h1>This is index page</h1>
-    <h1>This is index page</h1>
-    <h1>This is index page</h1>
-    <h1>This is index page</h1>
-    <h1>This is index page</h1>
-    <h1>This is index page</h1>
-@endsection
-
-
+@extends('layouts.admin')
