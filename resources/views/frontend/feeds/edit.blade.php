@@ -16,7 +16,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-light px-4">
-            <a class="navbar-brand" href="{{ route('welcome') }}">Student Mate</a>
+            <a class="navbar-brand" href="{{ route('frontend.index') }}">Student Mate</a>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navId"
                 aria-controls="navId" aria-expanded="false" aria-label="Toggle navigation"></button>
             <div class="collapse navbar-collapse" id="navId">
@@ -45,7 +45,7 @@
     </div>
 
     <div class="container">
-        <form action="{{ route('frontend.feeds.update', $feed) }}" method="post">
+        <form action="{{ route('frontend.feeds.update', $feed) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -58,10 +58,14 @@
                 <textarea class="form-control" name="description" id="description" rows="3">{{ $feed->description }}</textarea>
             </div>
             <div class="mb-3">
-                <label for="photo" class="form-label">Photo</label>
-                <input type="text" class="form-control" name="photo" id="photo"
-                    placeholder="photo of your post" value="{{ $feed->photo }}">
+                <label for="photo" class="form-label">Choose Photo</label>
+                <input type="file" class="form-control" name="photo" id="photo" placeholder=""
+                    aria-describedby="fileHelpId">
+                @error('photo')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
+            <img src="{{ asset('storage/'.$feed->photo) }}" alt="" class="img-thumbnail" style="height: 200px;"> <br><br>
 
             <button type="submit" class="btn btn-success">Update</button>
         </form>

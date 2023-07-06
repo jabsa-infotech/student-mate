@@ -16,7 +16,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-light px-4">
-            <a class="navbar-brand" href="{{ route('welcome') }}">Student Mate</a>
+            <a class="navbar-brand" href="{{ route('frontend.index') }}">Student Mate</a>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navId"
                 aria-controls="navId" aria-expanded="false" aria-label="Toggle navigation"></button>
             <div class="collapse navbar-collapse" id="navId">
@@ -36,15 +36,14 @@
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">Change password</a>
 
-                        <form action="{{ route('auth.logout') }}" method="post">
+                        <form action="{{ route('logout') }}" method="post">
                             @csrf
 
                             <button type="submit" class="dropdown-item">Log out</button>
                         </form>
                     @else
-
-                    <a class="dropdown-item" href="{{ route('login') }}">Login</a>
-                    <a class="dropdown-item" href="#">Signup</a>
+                        <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                        <a class="dropdown-item" href="#">Signup</a>
 
                     @endauth
 
@@ -79,7 +78,7 @@
                 </div>
                 <div class="col-6">
                     <div class="card p-4 mb-3">
-                        <form action="{{ route('frontend.feeds.store') }}" method="post">
+                        <form action="{{ route('frontend.feeds.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
@@ -97,9 +96,9 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="photo" class="form-label">Photo</label>
-                                <input type="text" class="form-control" name="photo" id="photo"
-                                    placeholder="photo of your post">
+                                <label for="photo" class="form-label">Choose Photo</label>
+                                <input type="file" class="form-control" name="photo" id="photo" placeholder=""
+                                    aria-describedby="fileHelpId">
                                 @error('photo')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -128,7 +127,7 @@
                             <div class="p-3">
                                 {{ $feed->description }}
                             </div>
-                            <img class="card-img-top" src="{{ $feed->photo }}" alt="Title">
+                            <img class="card-img-top" src="{{ asset('storage/' . $feed->photo) }}" alt="Title">
                             <div class="card-footer">
                                 <button class="btn">Like</button>
                                 <button class="btn">Comment</button>
